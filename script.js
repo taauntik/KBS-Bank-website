@@ -8,33 +8,37 @@ loginBtn.addEventListener("click", function () {
 // deposit button event handler
 const depositBtn = document.getElementById("addDeposit");
 depositBtn.addEventListener("click", function () {
-  const deposit = document.getElementById("deposit-amount").value;
-  const depositNumber = parseFloat(deposit);
+  // getInputNumber used
+  const depositNumber = getInputNumber("deposit-amount");
 
-  const currentDeposit = document.getElementById("currentDeposit").innerText;
-  const currentDepositNumber = parseFloat(currentDeposit);
-  const totalDeposit = depositNumber + currentDepositNumber;
-  // console.log(totalDeposit);
-
-  document.getElementById("currentDeposit").innerText = totalDeposit;
-
-  const currentBalance = document.getElementById("currentBalance").innerText;
-  const currentBalanceNumber = parseFloat(currentBalance);
-  const totalBalance = depositNumber + currentBalanceNumber;
-  // console.log(totalBalance);
-
-  document.getElementById("currentBalance").innerText = totalBalance;
+  // updateSpanText used
+  updateSpanText("currentDeposit", depositNumber);
+  updateSpanText("currentBalance", depositNumber);
 });
+
+// functions
+function updateSpanText(id, depositNumber) {
+  const current = document.getElementById(id).innerText;
+  const currentNumber = parseFloat(current);
+  const totalAmount = depositNumber + currentNumber;
+  document.getElementById(id).innerText = totalAmount;
+}
+
+function getInputNumber(id) {
+  const amount = document.getElementById(id).value;
+  const amountNumber = parseFloat(amount);
+  return amountNumber;
+}
+// functions end
 
 // withdraw button event handler
 const withdrawBtn = document.getElementById("addWithdraw");
 withdrawBtn.addEventListener("click", function () {
-  const withdraw = document.getElementById("withdraw-amount").value;
-  const withdrawNumber = parseFloat(withdraw);
-  const currentWithdraw = document.getElementById("currentWithdraw").innerText;
-  const currentWithdrawNumber = parseFloat(currentWithdraw);
-  const totalWithdraw = withdrawNumber + currentWithdrawNumber;
-  document.getElementById("currentWithdraw").innerText = totalWithdraw;
+  // getInputNumber used
+  const withdrawNumber = getInputNumber("withdraw-amount");
+
+  // updateSpanText used
+  updateSpanText("currentWithdraw", withdrawNumber);
 
   const currentBalance = document.getElementById("currentBalance").innerText;
   const currentBalanceNumber = parseFloat(currentBalance);
